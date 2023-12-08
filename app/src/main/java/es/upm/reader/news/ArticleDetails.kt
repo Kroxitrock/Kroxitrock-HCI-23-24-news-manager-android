@@ -1,12 +1,11 @@
 package es.upm.reader.news
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import es.upm.reader.news.model.Article
 import es.upm.reader.news.serice.ArticlesService
@@ -20,6 +19,18 @@ class ArticleDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_details)
 
+
+        loadArticle();
+        loadBackButton();
+    }
+
+    private fun loadBackButton() {
+         (findViewById<View>(R.id.back_img) as ImageView).setOnClickListener(View.OnClickListener {
+             finish()
+        })
+    }
+
+    private fun loadArticle(){
         lifecycleScope.launch {
             article = ArticlesService.getArticle(4318)
             (findViewById<View>(R.id.title) as TextView).text = article?.title ?: "404 not found"
@@ -35,6 +46,5 @@ class ArticleDetails : AppCompatActivity() {
             articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })
             articleImageView.layoutParams.height = 500
         }
-
     }
 }
