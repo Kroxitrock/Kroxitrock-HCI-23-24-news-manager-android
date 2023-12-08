@@ -16,4 +16,15 @@ object ArticlesService {
 
         throw Exception(response.message())
     }
+
+
+    suspend fun getArticle(id : Int): Article? {
+        val response = repository.getArticles(id)
+
+        if (response.isSuccessful) {
+            return response.body()
+        }
+
+        throw Exception(response.message())
+    }
 }
