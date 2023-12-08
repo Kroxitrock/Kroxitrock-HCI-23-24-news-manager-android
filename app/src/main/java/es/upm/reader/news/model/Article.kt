@@ -6,7 +6,7 @@ data class Article (
     val id: Int?,
     val title: String,
     val subtitle: String?,
-    val category: Category,
+    val category: Category?,
     val abstract: String,
     val body: String?,
     val username: String?,
