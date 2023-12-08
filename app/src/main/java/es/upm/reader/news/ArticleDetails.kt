@@ -1,5 +1,6 @@
 package es.upm.reader.news
 
+import android.adservices.adid.AdId
 import android.os.Bundle
 import android.text.Html
 import android.view.View
@@ -18,9 +19,7 @@ class ArticleDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_details)
-
-
-        loadArticle();
+        loadArticle(intent.extras?.getInt("articleId"));
         loadBackButton();
     }
 
@@ -30,17 +29,20 @@ class ArticleDetails : AppCompatActivity() {
         })
     }
 
-    private fun loadArticle(){
+    private fun loadArticle(articleId: Int?) {
+        if (articleId == null) {
+            return
+        }
         lifecycleScope.launch {
-            article = ArticlesService.getArticle(4318)
-            (findViewById<View>(R.id.title) as TextView).text = article?.title ?: "404 not found"
+            article = ArticlesService.getArticle(articleId)
+            findViewById<TextView>(R.id.title).text = article?.title ?: "404 not found"
             if(article == null) return@launch
 
             //Load article info
-            (findViewById<View>(R.id.subtitle) as TextView).text = article?.subtitle
-            (findViewById<View>(R.id.view_category) as TextView).text = article?.category.toString()
-            (findViewById<View>(R.id.view_abstract) as TextView).text = Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
-            (findViewById<View>(R.id.body) as TextView).text = Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
+            findViewById<TextView>(R.id.subtitle).text = article?.subtitle
+            findViewById<TextView>(R.id.view_category).text = article?.category.toString()
+            findViewById<TextView>(R.id.view_abstract).text = Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
+            findViewById<TextView>(R.id.body).text = Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
 
             val articleImageView = findViewById<ImageView>(R.id.view_image)
             articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })

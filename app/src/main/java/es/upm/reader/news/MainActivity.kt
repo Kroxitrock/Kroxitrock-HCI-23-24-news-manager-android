@@ -25,23 +25,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         ApplicationProperties.loadProperties(baseContext.assets.open("application.properties"))
-        articlesListView = findViewById<ListView>(R.id.articlesList)
+        articlesListView = findViewById(R.id.articlesList)
 
 
         lifecycleScope.launch {
             articles = ArticlesService.getArticles() ?: emptyList()
             articlesListView.adapter = ArticleAdapter(this@MainActivity, articles)
+            articlesListView.setOnItemClickListener { _, _, position, _ ->
+                val articleId = articles[position].id
+                val articleDetailsIntent = Intent(
+                    this@MainActivity,
+                    ArticleDetails::class.java
+                )
+                articleDetailsIntent.putExtra("articleId", articleId)
+                startActivity(articleDetailsIntent)
+
+            }
         }
-
-
-//        val btn = findViewById<View>(R.id.open_activity_button) as Button
-//        btn.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@MainActivity,
-//                    ArticleDetails::class.java
-//                )
-//            )
-//        }
     }
 }
