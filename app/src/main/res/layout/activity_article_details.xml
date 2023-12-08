@@ -12,7 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAlignment="center"
-        tools:context=".ArticleDetails">
+        tools:context=".ArticleDetails"
+        tools:ignore="ScrollViewSize">
+
+        <ImageView
+            android:id="@+id/view_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/navBar"
+            tools:layout_editor_absoluteX="16dp" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navBar"
@@ -27,13 +35,13 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/navBar"
+            app:layout_constraintTop_toBottomOf="@+id/view_image"
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
@@ -55,7 +63,6 @@
             android:layout_marginTop="30dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Abstract"
             android:textStyle="italic"
             app:layout_constraintTop_toBottomOf="@+id/view_category"
             tools:layout_editor_absoluteX="31dp" />
@@ -65,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Category"
             android:textAlignment="center"
             android:textColor="#6B6A6E"
             app:layout_constraintTop_toBottomOf="@+id/subtitle"
