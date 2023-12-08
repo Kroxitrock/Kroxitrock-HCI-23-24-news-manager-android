@@ -7,4 +7,6 @@ import retrofit2.http.GET
 interface ArticlesRepository {
     @GET("/pui-rest-news/articles")
     suspend fun getArticles() : Response<List<Article>>
+    @GET("/pui-rest-news/article/{id}")
+    suspend fun getArticles(id: Int) : Response<Article>
 }
