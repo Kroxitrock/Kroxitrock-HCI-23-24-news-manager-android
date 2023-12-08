@@ -16,11 +16,32 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_alignBottom="@id/articleImage"
-            android:layout_centerInParent="true"
-            android:text="Test"
-            android:id="@+id/articleTitle">
+            android:layout_alignEnd="@id/articleImage"
+            android:id="@+id/articleCategory">
         </TextView>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/articleImage"
+            android:background="#80FFFFFF">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/articleTitle">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:maxLines="6"
+                    android:id="@+id/articleAbstract">
+                </TextView>
+        </LinearLayout>
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>
