@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ListView
 import androidx.lifecycle.lifecycleScope
+import es.upm.reader.news.adapter.ArticleAdapter
 import es.upm.reader.news.model.Article
 import es.upm.reader.news.serice.ArticlesService
 import es.upm.reader.news.util.ApplicationProperties
@@ -27,8 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             articles = ArticlesService.getArticles() ?: emptyList()
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, articles.map { a -> a.title })
-            articlesListView.adapter = arrayAdapter
+            articlesListView.adapter = ArticleAdapter(this@MainActivity, articles)
         }
     }
 }
