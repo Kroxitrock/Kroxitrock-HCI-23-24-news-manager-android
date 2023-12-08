@@ -53,9 +53,11 @@ class ArticleAdapter (
         articleAbstractView?.text = Html.fromHtml(article.abstract, Html.FROM_HTML_MODE_COMPACT)
 
         try {
+            val articleImageView = view?.findViewById<ImageView>(R.id.articleImage)
             if (!article.thumbnailImage.isNullOrBlank() && !article.thumbnailMediaType.isNullOrBlank()) {
-                val articleImageView = view?.findViewById<ImageView>(R.id.articleImage)
                 articleImageView?.setImageBitmap(ImageUtils.base64ToBitmap(article.thumbnailImage))
+            } else {
+                articleImageView?.setImageResource(R.drawable.no_image)
             }
         } catch(e: IllegalArgumentException) {
             println("Bad data added by team ${article.username}")
