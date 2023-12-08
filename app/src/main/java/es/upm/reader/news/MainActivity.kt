@@ -34,15 +34,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val btn = findViewById<View>(R.id.open_activity_button) as Button
-
-        btn.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@MainActivity,
-                    ArticleDetails::class.java
-                )
-            )
-        }
+//        val btn = findViewById<View>(R.id.open_activity_button) as Button
+//        btn.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    this@MainActivity,
+//                    ArticleDetails::class.java
+//                )
+//            )
+//        }
     }
 }
