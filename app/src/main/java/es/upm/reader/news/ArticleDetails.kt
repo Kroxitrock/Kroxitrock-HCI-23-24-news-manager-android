@@ -28,11 +28,12 @@ class ArticleDetails : AppCompatActivity() {
             //Load article info
             (findViewById<View>(R.id.subtitle) as TextView).text = article?.subtitle
             (findViewById<View>(R.id.view_category) as TextView).text = article?.category.toString()
-            (findViewById<View>(R.id.view_abstract) as TextView).text = article?.abstract
-            (findViewById<View>(R.id.body) as TextView).text = Html.fromHtml(article?.body)
+            (findViewById<View>(R.id.view_abstract) as TextView).text = Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
+            (findViewById<View>(R.id.body) as TextView).text = Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
 
             val articleImageView = findViewById<ImageView>(R.id.view_image)
             articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })
+            articleImageView.layoutParams.height = 500
         }
 
     }
