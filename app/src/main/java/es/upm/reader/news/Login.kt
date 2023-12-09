@@ -56,7 +56,7 @@ class Login : AppCompatActivity() {
     private fun login() {
         lifecycleScope.launch {
             try{
-                LoginService.login(username?.text.toString(), password?.text.toString())
+                LoginService.login(username?.text.toString(), password?.text.toString(), true)
                 setResult(RESULT_OK)
                 finish()
             } catch (ex: Exception) {
