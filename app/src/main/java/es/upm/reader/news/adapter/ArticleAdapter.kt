@@ -54,7 +54,7 @@ class ArticleAdapter (
 
         try {
             val articleImageView = view?.findViewById<ImageView>(R.id.articleImage)
-            if (!article.thumbnailImage.isNullOrBlank() && !article.thumbnailMediaType.isNullOrBlank()) {
+            if (!article.thumbnailImage.isNullOrBlank()) {
                 articleImageView?.setImageBitmap(ImageUtils.base64ToBitmap(article.thumbnailImage))
             } else {
                 articleImageView?.setImageResource(R.drawable.no_image)
