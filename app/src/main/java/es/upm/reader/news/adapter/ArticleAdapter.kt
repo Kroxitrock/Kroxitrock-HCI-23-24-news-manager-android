@@ -1,9 +1,7 @@
 package es.upm.reader.news.adapter
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.text.Html
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import es.upm.reader.news.R
 import es.upm.reader.news.model.Article
-import es.upm.reader.news.model.Category
 import es.upm.reader.news.util.ImageUtils
-import java.lang.IllegalArgumentException
 
-class ArticleAdapter (
+class ArticleAdapter(
     private val context: Context,
     private val articleList: List<Article>
-): BaseAdapter() {
+) : BaseAdapter() {
 
     override fun getCount(): Int {
         return articleList.size
@@ -34,7 +30,8 @@ class ArticleAdapter (
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.article_card, parent, false)
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.article_card, parent, false)
 
         val article = articleList[position]
 
@@ -59,7 +56,7 @@ class ArticleAdapter (
             } else {
                 articleImageView?.setImageResource(R.drawable.no_image)
             }
-        } catch(e: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println("Bad data added by team ${article.username}")
         }
 

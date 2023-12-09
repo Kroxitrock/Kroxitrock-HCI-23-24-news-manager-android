@@ -2,7 +2,7 @@ package es.upm.reader.news.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Article (
+data class Article(
     val id: Int?,
     val title: String,
     val subtitle: String?,

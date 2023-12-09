@@ -1,6 +1,5 @@
 package es.upm.reader.news
 
-import android.adservices.adid.AdId
 import android.os.Bundle
 import android.text.Html
 import android.view.View
@@ -15,18 +14,19 @@ import kotlinx.coroutines.launch
 
 class ArticleDetails : AppCompatActivity() {
 
-    private var article: Article? = null;
+    private var article: Article? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_details)
-        loadArticle(intent.extras?.getInt("articleId"));
-        loadBackButton();
+        loadArticle(intent.extras?.getInt("articleId"))
+        loadBackButton()
     }
 
     private fun loadBackButton() {
-         (findViewById<View>(R.id.back_img) as ImageView).setOnClickListener(View.OnClickListener {
-             finish()
-        })
+        (findViewById<View>(R.id.back_img) as ImageView).setOnClickListener {
+            setResult(RESULT_CANCELED)
+            finish()
+        }
     }
 
     private fun loadArticle(articleId: Int?) {
@@ -36,19 +36,25 @@ class ArticleDetails : AppCompatActivity() {
         lifecycleScope.launch {
             article = ArticlesService.getArticle(articleId)
             findViewById<TextView>(R.id.title).text = article?.title ?: "404 not found"
-            if(article == null) return@launch
+            if (article == null) return@launch
 
             //Load article info
             findViewById<TextView>(R.id.subtitle).text = article?.subtitle
             findViewById<TextView>(R.id.view_category).text = article?.category.toString()
-            findViewById<TextView>(R.id.view_abstract).text = Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
-            findViewById<TextView>(R.id.body).text = Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
+            findViewById<TextView>(R.id.view_abstract).text =
+                Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
+            findViewById<TextView>(R.id.body).text =
+                Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
 
             val articleImageView = findViewById<ImageView>(R.id.view_image)
             if (article?.imageData.isNullOrBlank()) {
                 articleImageView.setImageResource(R.drawable.no_image)
             } else {
-                articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })
+                articleImageView?.setImageBitmap(article?.imageData?.let {
+                    ImageUtils.base64ToBitmap(
+                        it
+                    )
+                })
             }
             articleImageView.layoutParams.height = 500
         }

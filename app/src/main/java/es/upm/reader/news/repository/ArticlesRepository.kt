@@ -7,8 +7,8 @@ import retrofit2.http.Path
 
 interface ArticlesRepository {
     @GET("/pui-rest-news/articles")
-    suspend fun getArticles() : Response<List<Article>>
+    suspend fun getArticles(): Response<List<Article>>
 
     @GET("/pui-rest-news/article/{id}")
-    suspend fun getArticles(@Path(value="id") id: Int) : Response<Article>
+    suspend fun getArticles(@Path(value = "id") id: Int): Response<Article>
 }

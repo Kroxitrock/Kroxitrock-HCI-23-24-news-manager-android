@@ -7,7 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginRepositoryFactory {
     fun getInstance(): LoginRepository {
         return Retrofit.Builder().baseUrl(ApplicationProperties.getProperty("base-url"))
-            .addConverterFactory(GsonConverterFactory.create()).client(HttpClient.getInstance()).build()
+            .addConverterFactory(GsonConverterFactory.create()).client(HttpClient.getInstance())
+            .build()
             .create(LoginRepository::class.java)
     }
 }

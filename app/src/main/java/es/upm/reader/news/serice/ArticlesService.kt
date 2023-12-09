@@ -18,7 +18,7 @@ object ArticlesService {
     }
 
 
-    suspend fun getArticle(id : Int): Article? {
+    suspend fun getArticle(id: Int): Article? {
         val response = repository.getArticles(id)
 
         if (response.isSuccessful) {

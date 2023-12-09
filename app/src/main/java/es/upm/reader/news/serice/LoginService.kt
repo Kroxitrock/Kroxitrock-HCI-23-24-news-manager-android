@@ -14,7 +14,7 @@ object LoginService {
         val response = repository.login(Credentials(username, password))
 
         if (response.isSuccessful && response.body() != null) {
-            user = response.body();
+            user = response.body()
             return
         }
 

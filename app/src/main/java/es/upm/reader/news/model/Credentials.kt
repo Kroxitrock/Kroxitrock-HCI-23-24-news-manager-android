@@ -1,6 +1,6 @@
 package es.upm.reader.news.model
 
-class Credentials (
+class Credentials(
     val username: String,
     val passwd: String
 )
