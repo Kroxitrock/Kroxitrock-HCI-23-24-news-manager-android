@@ -14,7 +14,7 @@
         android:background="#673AB7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -38,10 +38,10 @@
         android:id="@+id/articlesList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navBar" />
 
 </LinearLayout>

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 val loginActivityIntent = Intent(
                     this@MainActivity,
-                    ArticleDetails::class.java
+                    Login::class.java
                 )
                 startActivity(loginActivityIntent)
             }
