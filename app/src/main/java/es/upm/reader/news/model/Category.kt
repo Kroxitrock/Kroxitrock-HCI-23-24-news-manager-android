@@ -4,5 +4,6 @@ enum class Category {
     National,
     Economy,
     Sports,
-    Technology
+    Technology,
+    International
 }
