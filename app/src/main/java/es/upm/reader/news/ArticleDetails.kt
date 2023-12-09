@@ -45,7 +45,11 @@ class ArticleDetails : AppCompatActivity() {
             findViewById<TextView>(R.id.body).text = Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
 
             val articleImageView = findViewById<ImageView>(R.id.view_image)
-            articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })
+            if (article?.imageData.isNullOrBlank()) {
+                articleImageView.setImageResource(R.drawable.no_image)
+            } else {
+                articleImageView?.setImageBitmap(article?.imageData?.let { ImageUtils.base64ToBitmap(it) })
+            }
             articleImageView.layoutParams.height = 500
         }
     }
