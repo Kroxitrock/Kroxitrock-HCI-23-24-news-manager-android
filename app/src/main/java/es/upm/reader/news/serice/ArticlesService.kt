@@ -27,4 +27,8 @@ object ArticlesService {
 
         throw Exception(response.message())
     }
+
+    suspend fun saveArticle(article: Article) {
+        repository.saveArticle(article)
+    }
 }

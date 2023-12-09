@@ -3,6 +3,7 @@ package es.upm.reader.news
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
+import android.util.Base64
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class ArticleDetails : AppCompatActivity() {
 
+    private var updated = false
     private var article: Article? = null
     private lateinit var articleImageView: ImageView
 
@@ -41,6 +43,16 @@ class ArticleDetails : AppCompatActivity() {
                     return@registerForActivityResult
                 }
                 articleImageView.setImageURI(uri)
+                val imageBytes = contentResolver.openInputStream(uri)?.use { it.buffered().readBytes() }
+                val base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+                val imageType = contentResolver.getType(uri)
+                val newArticle = article?.copy(imageData = base64Image, imageMediaType = imageType)
+                if (newArticle != null) {
+                    lifecycleScope.launch {
+                        ArticlesService.saveArticle(newArticle)
+                        updated = true
+                    }
+                }
             }
 
         articleImageView.setOnClickListener {
@@ -50,7 +62,11 @@ class ArticleDetails : AppCompatActivity() {
 
     private fun loadBackButton() {
         findViewById<ImageView>(R.id.back_img).setOnClickListener {
-            setResult(RESULT_CANCELED)
+            if (updated) {
+                setResult(RESULT_OK)
+            } else {
+                setResult(RESULT_CANCELED)
+            }
             finish()
         }
     }
@@ -75,7 +91,7 @@ class ArticleDetails : AppCompatActivity() {
             if (article?.imageData.isNullOrBlank()) {
                 articleImageView.setImageResource(R.drawable.no_image)
             } else {
-                articleImageView?.setImageBitmap(article?.imageData?.let {
+                articleImageView.setImageBitmap(article?.imageData?.let {
                     ImageUtils.base64ToBitmap(
                         it
                     )
