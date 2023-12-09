@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -54,9 +55,10 @@ class Login : AppCompatActivity() {
     }
 
     private fun login() {
+        val saveUser =findViewById<CheckBox>(R.id.saveUser).isChecked
         lifecycleScope.launch {
             try{
-                LoginService.login(username?.text.toString(), password?.text.toString(), true)
+                LoginService.login(username?.text.toString(), password?.text.toString(), saveUser)
                 setResult(RESULT_OK)
                 finish()
             } catch (ex: Exception) {

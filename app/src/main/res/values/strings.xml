@@ -5,4 +5,5 @@
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
     <string name="user_credentials">user-credentials</string>
+    <string name="remember_me">Remember me</string>
 </resources>
