@@ -44,6 +44,11 @@ class MainActivity : AppCompatActivity() {
         handleAuthButton()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        handleAuthButtonIcon()
+    }
+
     private fun handleAuthButton() {
         handleAuthButtonIcon()
         authButton.setOnClickListener {
