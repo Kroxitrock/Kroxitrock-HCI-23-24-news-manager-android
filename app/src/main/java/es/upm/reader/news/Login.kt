@@ -57,8 +57,7 @@ class Login : AppCompatActivity() {
         lifecycleScope.launch {
             try{
                 LoginService.login(username?.text.toString(), password?.text.toString())
-                //LoginService.login("DEV_TEAM_01", "123501@3")
-                super.onRestart()
+                setResult(RESULT_OK)
                 finish()
             } catch (ex: Exception) {
                 Toast.makeText(this@Login, "Wrong username or password",

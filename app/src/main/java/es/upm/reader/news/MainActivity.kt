@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 fetchArticles()
+                handleAuthButtonIcon()
             }
         }
 
@@ -42,11 +43,6 @@ class MainActivity : AppCompatActivity() {
         handleAutoLogin()
         fetchArticles()
         handleAuthButton()
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        handleAuthButtonIcon()
     }
 
     private fun handleAuthButton() {

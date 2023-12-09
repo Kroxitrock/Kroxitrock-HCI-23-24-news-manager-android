@@ -1,24 +1,51 @@
 package es.upm.reader.news
 
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import es.upm.reader.news.model.Article
 import es.upm.reader.news.serice.ArticlesService
+import es.upm.reader.news.serice.LoginService
 import es.upm.reader.news.util.ImageUtils
 import kotlinx.coroutines.launch
 
 class ArticleDetails : AppCompatActivity() {
 
     private var article: Article? = null
+    private lateinit var articleImageView: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_details)
+
+        articleImageView = findViewById<ImageView>(R.id.articleImage)
+
         loadArticle(intent.extras?.getInt("articleId"))
         loadBackButton()
+        setupImage()
+    }
+
+    private fun setupImage() {
+        if (!LoginService.isLoggedIn()) {
+            return
+        }
+
+        val getContent =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+                if (uri == null) {
+                    return@registerForActivityResult
+                }
+                articleImageView.setImageURI(uri)
+            }
+
+        articleImageView.setOnClickListener {
+            getContent.launch("image/*")
+        }
     }
 
     private fun loadBackButton() {
@@ -45,7 +72,6 @@ class ArticleDetails : AppCompatActivity() {
             findViewById<TextView>(R.id.body).text =
                 Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
 
-            val articleImageView = findViewById<ImageView>(R.id.view_image)
             if (article?.imageData.isNullOrBlank()) {
                 articleImageView.setImageResource(R.drawable.no_image)
             } else {
