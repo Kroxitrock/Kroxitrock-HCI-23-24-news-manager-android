@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.lifecycle.lifecycleScope
 import es.upm.reader.news.adapter.ArticleAdapter
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        loadLogin();
 
         ApplicationProperties.loadProperties(baseContext.assets.open("application.properties"))
         articlesListView = findViewById(R.id.articlesList)
@@ -41,6 +44,17 @@ class MainActivity : AppCompatActivity() {
                 startActivity(articleDetailsIntent)
 
             }
+        }
+    }
+
+
+    private fun loadLogin() {
+        findViewById<ImageView>(R.id.login_btn).setOnClickListener {
+            val articleDetailsIntent = Intent(
+                this@MainActivity,
+                Login::class.java
+            )
+            startActivity(articleDetailsIntent)
         }
     }
 }
