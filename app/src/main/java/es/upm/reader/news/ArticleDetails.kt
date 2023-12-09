@@ -2,7 +2,6 @@ package es.upm.reader.news
 
 import android.os.Bundle
 import android.text.Html
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +22,7 @@ class ArticleDetails : AppCompatActivity() {
     }
 
     private fun loadBackButton() {
-        (findViewById<View>(R.id.back_img) as ImageView).setOnClickListener {
+        findViewById<ImageView>(R.id.back_img).setOnClickListener {
             setResult(RESULT_CANCELED)
             finish()
         }
