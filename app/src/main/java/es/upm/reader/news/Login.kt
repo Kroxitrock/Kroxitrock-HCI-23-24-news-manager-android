@@ -63,7 +63,7 @@ class Login : AppCompatActivity() {
                 finish()
             } catch (ex: Exception) {
                 Toast.makeText(this@Login, "Wrong username or password",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show()
             }
         }
     }

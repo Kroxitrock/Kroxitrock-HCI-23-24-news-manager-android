@@ -6,6 +6,7 @@ import android.text.Html
 import android.util.Base64
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +51,8 @@ class ArticleDetails : AppCompatActivity() {
                 if (newArticle != null) {
                     lifecycleScope.launch {
                         ArticlesService.saveArticle(newArticle)
+                        Toast.makeText(this@ArticleDetails, "Image updated",
+                            Toast.LENGTH_SHORT).show()
                         updated = true
                     }
                 }

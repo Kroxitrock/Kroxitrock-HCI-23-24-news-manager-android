@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:padding="5dp"
             android:layout_alignEnd="@id/articleImage"
+            android:background="@color/accent"
             android:id="@+id/articleCategory">
         </TextView>
         <LinearLayout
