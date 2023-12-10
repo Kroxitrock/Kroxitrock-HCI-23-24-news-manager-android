@@ -33,6 +33,59 @@
             android:layout_gravity="end"
             android:layout_marginEnd="15dp" />
     </com.google.android.material.navigation.NavigationView>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/category_filter">
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:checked="true"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/all">-->
+<!--            </com.google.android.material.chip.Chip>-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/national">-->
+<!--            </com.google.android.material.chip.Chip>-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/economy">-->
+<!--            </com.google.android.material.chip.Chip>-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/sports">-->
+<!--            </com.google.android.material.chip.Chip>-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/technology">-->
+<!--            </com.google.android.material.chip.Chip>-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:chipBackgroundColor="@color/accent"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/international">-->
+<!--            </com.google.android.material.chip.Chip>-->
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <ListView
         android:id="@+id/articlesList"

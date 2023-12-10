@@ -6,4 +6,10 @@
     <string name="sign_in">Sign in</string>
     <string name="user_credentials">user-credentials</string>
     <string name="remember_me">Remember me</string>
+    <string name="technology">Technology</string>
+    <string name="international">International</string>
+    <string name="sports">Sports</string>
+    <string name="economy">Economy</string>
+    <string name="national">National</string>
+    <string name="all">All</string>
 </resources>
