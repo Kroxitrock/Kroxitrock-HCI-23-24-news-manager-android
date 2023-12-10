@@ -87,6 +87,8 @@ class ArticleDetails : AppCompatActivity() {
                 Html.fromHtml(article?.abstract, Html.FROM_HTML_MODE_COMPACT)
             findViewById<TextView>(R.id.body).text =
                 Html.fromHtml(article?.body, Html.FROM_HTML_MODE_COMPACT)
+            findViewById<TextView>(R.id.view_user).text = article?.username
+            findViewById<TextView>(R.id.view_updated_date).text = article?.updateDate
 
             if (article?.imageData.isNullOrBlank()) {
                 articleImageView.setImageResource(R.drawable.no_image)
