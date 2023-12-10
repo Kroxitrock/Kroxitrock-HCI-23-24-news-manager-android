@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.chip.Chip
 import es.upm.reader.news.R
 import es.upm.reader.news.model.Article
 import es.upm.reader.news.util.ImageUtils
@@ -41,7 +42,7 @@ class ArticleAdapter(
         if (article.category == null) {
             println("Bad category added by team ${article.username}")
         } else {
-            val articleCategoryView = view?.findViewById<TextView>(R.id.articleCategory)
+            val articleCategoryView = view?.findViewById<Chip>(R.id.articleCategory)
             articleCategoryView?.text = article.category.toString()
         }
 
